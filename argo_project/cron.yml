@@ -4,7 +4,7 @@ metadata:
   name: elt-cron-workflow
   namespace: argo
 spec:
-  schedule: "*/5 * * * *"
+  schedule: "*/30 * * * *"
   workflowSpec:
     entrypoint: elt
     templates:
@@ -60,5 +60,12 @@ spec:
             - name: dbt-build
               template: dbt-build
               dependencies: [airbyte-sync-customers, airbyte-sync-orders]
+            - name: airbyte-sync-reverse-etl
+              template: airbyte-sync
+              arguments:
+                parameters:
+                  - name: connection-name
+                    value: clickhouse_pg_customers
+              dependencies: [dbt-build]
     podGC:
       strategy: OnPodCompletion

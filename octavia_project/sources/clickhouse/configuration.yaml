@@ -1,0 +1,32 @@
+# Configuration for airbyte/source-clickhouse
+# Documentation about this connector can be found at https://docs.airbyte.com/integrations/sources/clickhouse
+resource_name: "clickhouse"
+definition_type: source
+definition_id: bad83517-5e54-4a3d-9b53-63e85fbd4d7c
+definition_image: airbyte/source-clickhouse
+definition_version: 0.1.14
+
+# EDIT THE CONFIGURATION BELOW!
+configuration:
+  ssl: false # OPTIONAL | boolean | Encrypt data using SSL.
+  host: localhost # REQUIRED | string | The host endpoint of the Clickhouse cluster.
+  port: 8123 # REQUIRED | integer | The port of the database. | Example: 8123
+  database: processed_customers # REQUIRED | string | The name of the database. | Example: default
+  password: ${CLICKHOUSE_PASSWORD} # SECRET (please store in environment variables) | OPTIONAL | string | The password associated with this username.
+  username: airbyte # REQUIRED | string | The username which is used to access the database.
+  tunnel_method:
+    ## -------- Pick one valid structure among the examples below: --------
+    tunnel_method: "NO_TUNNEL" # REQUIRED | string | No ssh tunnel needed to connect to database
+    ## -------- Another valid structure for tunnel_method: --------
+    # ssh_key: ${SSH_KEY} # SECRET (please store in environment variables) | REQUIRED | string | OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )
+    # tunnel_host: # REQUIRED | string | Hostname of the jump server host that allows inbound ssh tunnel.
+    # tunnel_port: 22 # REQUIRED | integer | Port on the proxy/jump server that accepts inbound ssh connections. | Example: 22
+    # tunnel_user: # REQUIRED | string | OS-level username for logging into the jump server host.
+    # tunnel_method: "SSH_KEY_AUTH" # REQUIRED | string | Connect through a jump server tunnel host using username and ssh key
+    ## -------- Another valid structure for tunnel_method: --------
+    # tunnel_host: # REQUIRED | string | Hostname of the jump server host that allows inbound ssh tunnel.
+    # tunnel_port: 22 # REQUIRED | integer | Port on the proxy/jump server that accepts inbound ssh connections. | Example: 22
+    # tunnel_user: # REQUIRED | string | OS-level username for logging into the jump server host
+    # tunnel_method: "SSH_PASSWORD_AUTH" # REQUIRED | string | Connect through a jump server tunnel host using username and password authentication
+    # tunnel_user_password: ${TUNNEL_USER_PASSWORD} # SECRET (please store in environment variables) | REQUIRED | string | OS-level password for logging into the jump server host
+  # jdbc_url_params: # OPTIONAL | string | Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (Eg. key1=value1&key2=value2&key3=value3). For more information read about <a href="https://jdbc.postgresql.org/documentation/head/connect.html">JDBC URL parameters</a>.

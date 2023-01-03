@@ -33,7 +33,7 @@ The available services are:
     - password: `password`
 
 - [clickhouse](https://clickhouse.com/docs)
-    - interface [here](http://localhost:8123)
+    - interface [here](http://localhost:8123/play?user=airbyte)
     - username: `airbyte`
     - password: `password`
 
