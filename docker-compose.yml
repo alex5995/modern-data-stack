@@ -34,21 +34,23 @@ services:
 
   octavia:
     image: airbyte/octavia-cli:0.40.26
-    entrypoint: "tail -f /dev/null"
     env_file:
       - .env
+    entrypoint: "tail -f /dev/null"
     network_mode: host
     volumes:
       - ./octavia_project:/home/octavia-project
 
-  dbt:
+  app:
     build:
-      context: ./dbt_project
+      context: .
     env_file:
       - .env
     entrypoint: "tail -f /dev/null"
+    network_mode: host
     volumes:
       - ./dbt_project:/dbt
+      - ./octavia_project:/octavia
 
   postgres_metabase:
     image: postgres:15

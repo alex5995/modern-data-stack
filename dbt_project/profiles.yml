@@ -4,6 +4,6 @@ default:
     dev:
       type: clickhouse
       schema: processed_customers
-      host: clickhouse
+      host: "{{ env_var('CLICKHOUSE_HOST') }}"
       user: "{{ env_var('CLICKHOUSE_USER') }}"
       password: "{{ env_var('CLICKHOUSE_PASSWORD') }}"

@@ -1,0 +1,64 @@
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: elt-cron-workflow
+  namespace: argo
+spec:
+  schedule: "*/5 * * * *"
+  workflowSpec:
+    entrypoint: elt
+    templates:
+      - name: airbyte-sync
+        inputs:
+          parameters:
+            - name: connection-name
+        container:
+          image: mds-app
+          imagePullPolicy: Never
+          command:
+            - python
+            - /octavia/trigger_connection_sync.py
+            - "{{inputs.parameters.connection-name}}"
+          env:
+            - name: AIRBYTE_HOST
+              value: http://host.minikube.internal:8000
+            - name: AIRBYTE_USERNAME
+              value: airbyte
+          envFrom:
+            - secretRef:
+                name: credentials
+      - name: dbt-build
+        container:
+          image: mds-app
+          imagePullPolicy: Never
+          command:
+            - dbt
+            - build
+          env:
+            - name: CLICKHOUSE_HOST
+              value: host.minikube.internal
+            - name: CLICKHOUSE_USER
+              value: airbyte
+          envFrom:
+            - secretRef:
+                name: credentials
+      - name: elt
+        dag:
+          tasks:
+            - name: airbyte-sync-customers
+              template: airbyte-sync
+              arguments:
+                parameters:
+                  - name: connection-name
+                    value: pg_customers_clickhouse
+            - name: airbyte-sync-orders
+              template: airbyte-sync
+              arguments:
+                parameters:
+                  - name: connection-name
+                    value: pg_orders_clickhouse
+            - name: dbt-build
+              template: dbt-build
+              dependencies: [airbyte-sync-customers, airbyte-sync-orders]
+    podGC:
+      strategy: OnPodCompletion
