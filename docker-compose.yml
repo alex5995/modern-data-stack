@@ -7,27 +7,30 @@ services:
       CLICKHOUSE_USER: ${CLICKHOUSE_USER}
       CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD}
     ports:
-      - '8123:8123'
+      - 8123:8123
     volumes:
-      - ./clickhouse-init.sql:/docker-entrypoint-initdb.d/clickhouse-init.sql
+      - ./initdb/clickhouse.sql:/docker-entrypoint-initdb.d/init.sql
+      - clickhouse:/var/lib/clickhouse
 
   postgres_customers:
     image: postgres:15
     environment:
       POSTGRES_PASSWORD: ${PG_CUSTOMERS_PASSWORD}
     ports:
-      - '5432:5432'
+      - 5432:5432
     volumes:
-      - ./pg_dumps:/pg_dumps
+      - ./initdb/customers.sql:/docker-entrypoint-initdb.d/init.sql
+      - pg_customers:/var/lib/postgresql/data
 
   postgres_orders:
     image: postgres:15
     environment:
       POSTGRES_PASSWORD: ${PG_ORDERS_PASSWORD}
     ports:
-      - '5433:5432'
+      - 5433:5432
     volumes:
-      - ./pg_dumps:/pg_dumps
+      - ./initdb/orders.sql:/docker-entrypoint-initdb.d/init.sql
+      - pg_orders:/var/lib/postgresql/data
 
   octavia:
     image: airbyte/octavia-cli:0.40.26
@@ -37,7 +40,6 @@ services:
     network_mode: host
     volumes:
       - ./octavia_project:/home/octavia-project
-      - ./wait-for-it.sh:/wait-for-it.sh
 
   dbt:
     build:
@@ -47,3 +49,39 @@ services:
     entrypoint: "tail -f /dev/null"
     volumes:
       - ./dbt_project:/dbt
+
+  postgres_metabase:
+    image: postgres:15
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5434:5432
+    volumes:
+      - ./initdb/metabase.sql:/docker-entrypoint-initdb.d/init.sql
+      - pg_metabase:/var/lib/postgresql/data
+
+  metabase:
+    image: metabase/metabase
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: postgres
+      MB_DB_PORT: 5432
+      MB_DB_USER: postgres
+      MB_DB_PASS: postgres
+      MB_DB_HOST: postgres_metabase
+    ports:
+      - 3000:3000
+    volumes:
+      - ./metabase_plugins/ch.jar:/plugins/clickhouse.jar
+    depends_on:
+      - postgres_metabase
+
+volumes:
+  pg_customers:
+    name: mds_customers_db
+  pg_orders:
+    name: mds_orders_db
+  pg_metabase:
+    name: mds_metabase_db
+  clickhouse:
+    name: mds_clickhouse
