@@ -38,3 +38,12 @@ services:
     volumes:
       - ./octavia_project:/home/octavia-project
       - ./wait-for-it.sh:/wait-for-it.sh
+
+  dbt:
+    build:
+      context: ./dbt_project
+    env_file:
+      - ./dbt_project/.env.dev
+    entrypoint: "tail -f /dev/null"
+    volumes:
+      - ./dbt_project:/dbt
