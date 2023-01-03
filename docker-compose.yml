@@ -9,7 +9,8 @@ services:
     ports:
       - 8123:8123
     volumes:
-      - ./initdb/clickhouse.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./initdb/clickhouse/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./initdb/clickhouse/profiles.xml:/etc/clickhouse-server/users.d/profiles.xml
       - clickhouse:/var/lib/clickhouse
 
   postgres_customers:
