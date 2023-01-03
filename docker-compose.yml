@@ -58,7 +58,7 @@ services:
     environment:
       POSTGRES_PASSWORD: postgres
     ports:
-      - 5434:5432
+      - 3001:5432
     volumes:
       - ./initdb/metabase.sql:/docker-entrypoint-initdb.d/init.sql
       - pg_metabase:/var/lib/postgresql/data

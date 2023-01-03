@@ -39,7 +39,7 @@ The available services are:
 
 - [metabase](https://www.metabase.com/docs)
     - interface [here](http://localhost:3000)
-    - username: `example@example.com`
+    - username: `metabase@user.com`
     - password: `mds123`
 
 - [argo workflows](https://argoproj.github.io/argo-workflows)

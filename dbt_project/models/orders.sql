@@ -7,8 +7,8 @@ SELECT
     o.status AS order_status,
     p.payment_method AS payment_method,
     p.amount AS order_amount
-FROM {{ source('customers', 'orders') }} AS o
-LEFT JOIN {{ source('customers', 'payments') }} AS p
+FROM {{ source('orders', 'orders') }} AS o
+LEFT JOIN {{ source('orders', 'payments') }} AS p
     ON o.id = p.order_id
 LEFT JOIN {{ ref('customers') }} AS c
     ON o.user_id = c.customer_id

@@ -4132,7 +4132,7 @@ COPY public.card_label (id, card_id, label_id) FROM stdin;
 --
 
 COPY public.collection (id, name, description, color, archived, location, personal_owner_id, slug, namespace, authority_level, entity_id, created_at) FROM stdin;
-1	Marco Giordano's Personal Collection	\N	#31698A	f	/	1	marco_giordano_s_personal_collection	\N	\N	9oPPygSGdbiXxmVpgM4jK	2022-12-28 08:30:34.960376+00
+1	Metabase User's Personal Collection	\N	#31698A	f	/	1	metabase_user_s_personal_collection	\N	\N	9oPPygSGdbiXxmVpgM4jK	2022-12-28 08:30:34.960376+00
 \.
 
 
@@ -4174,6 +4174,7 @@ COPY public.computation_job_result (id, job_id, created_at, updated_at, permanen
 
 COPY public.core_session (id, user_id, created_at, anti_csrf_token) FROM stdin;
 f02a6396-abce-4dfc-ac9b-1b12cd7ec81c	1	2022-12-28 08:30:32.441204+00	\N
+7316b55f-7f79-431c-aca6-463d668d2f99	1	2023-01-03 09:09:57.446373+00	\N
 \.
 
 
@@ -4182,7 +4183,7 @@ f02a6396-abce-4dfc-ac9b-1b12cd7ec81c	1	2022-12-28 08:30:32.441204+00	\N
 --
 
 COPY public.core_user (id, email, first_name, last_name, password, password_salt, date_joined, last_login, is_superuser, is_active, reset_token, reset_triggered, is_qbnewb, google_auth, ldap_auth, login_attributes, updated_at, sso_source, locale, is_datasetnewb, settings) FROM stdin;
-1	example@example.com	Marco	Giordano	$2a$10$0FrbqMpmA6W9sUVziuw78.zxLvzJpLLy5LtryyXgRacQgwnzRE/CC	642927b5-7bf1-4943-84e5-bc7c0d173a87	2022-12-28 08:30:32.441204+00	2022-12-28 08:30:32.679202+00	t	t	\N	\N	t	f	f	\N	2022-12-28 08:30:32.679202	\N	\N	t	\N
+1	metabase@user.com	Metabase	User	$2a$10$0FrbqMpmA6W9sUVziuw78.zxLvzJpLLy5LtryyXgRacQgwnzRE/CC	642927b5-7bf1-4943-84e5-bc7c0d173a87	2022-12-28 08:30:32.441204+00	2023-01-03 09:09:57.455872+00	t	t	\N	\N	t	f	f	\N	2023-01-03 09:19:31.064779	\N	\N	t	\N
 \.
 
 
@@ -4225,7 +4226,6 @@ migrate-remove-admin-from-group-mapping-if-needed	2022-12-28 08:28:02.193549
 --
 
 COPY public.databasechangelog (id, author, filename, dateexecuted, orderexecuted, exectype, md5sum, description, comments, tag, liquibase, contexts, labels, deployment_id) FROM stdin;
-1	agilliland	migrations/000_migrations.yaml	2022-12-28 08:27:59.719398	1	EXECUTED	8:70d9a1021171b879cc55058f4d094a9c	createTable tableName=core_organization; createTable tableName=core_user; createTable tableName=core_userorgperm; addUniqueConstraint constraintName=idx_unique_user_id_organization_id, tableName=core_userorgperm; createIndex indexName=idx_userorgp...		\N	4.10.0	\N	\N	2216079419
 2	agilliland	migrations/000_migrations.yaml	2022-12-28 08:27:59.725568	2	EXECUTED	8:ca241a2c777802abaedd43d8944927f3	createTable tableName=core_session		\N	4.10.0	\N	\N	2216079419
 4	cammsaul	migrations/000_migrations.yaml	2022-12-28 08:27:59.730477	3	EXECUTED	8:a8e7822a91ea122212d376f5c2d4158f	createTable tableName=setting		\N	4.10.0	\N	\N	2216079419
 5	agilliland	migrations/000_migrations.yaml	2022-12-28 08:27:59.73344	4	EXECUTED	8:4f8653d16f4b102b3dff647277b6b988	addColumn tableName=core_organization		\N	4.10.0	\N	\N	2216079419
@@ -4254,7 +4254,6 @@ COPY public.databasechangelog (id, author, filename, dateexecuted, orderexecuted
 28	agilliland	migrations/000_migrations.yaml	2022-12-28 08:27:59.978071	27	EXECUTED	8:428e4eb05e4e29141735adf9ae141a0b	addColumn tableName=core_user		\N	4.10.0	\N	\N	2216079419
 29	agilliland	migrations/000_migrations.yaml	2022-12-28 08:27:59.980886	28	EXECUTED	8:8b02731cc34add3722c926dfd7376ae0	addColumn tableName=pulse_channel		\N	4.10.0	\N	\N	2216079419
 30	agilliland	migrations/000_migrations.yaml	2022-12-28 08:27:59.984775	29	EXECUTED	8:2c3a50cef177cb90d47a9973cd5934e5	addColumn tableName=metabase_field; addNotNullConstraint columnName=visibility_type, tableName=metabase_field		\N	4.10.0	\N	\N	2216079419
-31	agilliland	migrations/000_migrations.yaml	2022-12-28 08:27:59.987752	30	EXECUTED	8:30a33a82bab0bcbb2ccb6738d48e1421	addColumn tableName=metabase_field		\N	4.10.0	\N	\N	2216079419
 56	wwwiiilll	migrations/000_migrations.yaml	2022-12-28 08:28:00.255376	55	EXECUTED	8:9f46051abaee599e2838733512a32ad0	addColumn tableName=core_user	Added 0.25.0	\N	4.10.0	\N	\N	2216079419
 32	camsaul	migrations/000_migrations.yaml	2022-12-28 08:28:00.005173	31	EXECUTED	8:28afcfc9b7f1bd1b08caa9d527355c48	createTable tableName=label; createIndex indexName=idx_label_slug, tableName=label; createTable tableName=card_label; addUniqueConstraint constraintName=unique_card_label_card_id_label_id, tableName=card_label; createIndex indexName=idx_card_label...		\N	4.10.0	\N	\N	2216079419
 32	agilliland	migrations/000_migrations.yaml	2022-12-28 08:28:00.025554	32	EXECUTED	8:32fb3ffb1ac9b619248c3de8e3d09b4b	createTable tableName=raw_table; createIndex indexName=idx_rawtable_database_id, tableName=raw_table; addUniqueConstraint constraintName=uniq_raw_table_db_schema_name, tableName=raw_table; createTable tableName=raw_column; createIndex indexName=id...		\N	4.10.0	\N	\N	2216079419
@@ -4279,6 +4278,7 @@ COPY public.databasechangelog (id, author, filename, dateexecuted, orderexecuted
 52	camsaul	migrations/000_migrations.yaml	2022-12-28 08:28:00.228348	51	EXECUTED	8:5af9ea2a96cd6e75a8ac1e6afde7126b	createTable tableName=query_cache; createIndex indexName=idx_query_cache_updated_at, tableName=query_cache; addColumn tableName=report_card		\N	4.10.0	\N	\N	2216079419
 53	camsaul	migrations/000_migrations.yaml	2022-12-28 08:28:00.234527	52	EXECUTED	8:78d015c5090c57cd6972eb435601d3d0	createTable tableName=query		\N	4.10.0	\N	\N	2216079419
 54	tlrobinson	migrations/000_migrations.yaml	2022-12-28 08:28:00.238444	53	EXECUTED	8:e410005b585f5eeb5f202076ff9468f7	addColumn tableName=pulse		\N	4.10.0	\N	\N	2216079419
+87	camsaul	migrations/000_migrations.yaml	2022-12-28 08:28:00.439874	85	EXECUTED	8:0eccf19a93cb0ba4017aafd1d308c097	dropTable tableName=raw_column; dropTable tableName=raw_table	Added 0.30.0	\N	4.10.0	\N	\N	2216079419
 55	camsaul	migrations/000_migrations.yaml	2022-12-28 08:28:00.252002	54	EXECUTED	8:088fee4d7555e104bc96fed923bce9aa	addColumn tableName=report_dashboard; addColumn tableName=report_dashboard; createTable tableName=dashboard_favorite; addUniqueConstraint constraintName=unique_dashboard_favorite_user_id_dashboard_id, tableName=dashboard_favorite; createIndex inde...		\N	4.10.0	\N	\N	2216079419
 57	camsaul	migrations/000_migrations.yaml	2022-12-28 08:28:00.258861	56	EXECUTED	8:aab81d477e2d19a9ab18c58b78c9af88	addColumn tableName=report_card	Added 0.25.0	\N	4.10.0	\N	\N	2216079419
 58	senior	migrations/000_migrations.yaml	2022-12-28 08:28:00.279555	57	EXECUTED	8:9e6d48acacceb109e0bd27e4e44a8cb4	createTable tableName=dimension; addUniqueConstraint constraintName=unique_dimension_field_id_name, tableName=dimension; createIndex indexName=idx_dimension_field_id, tableName=dimension	Added 0.25.0	\N	4.10.0	\N	\N	2216079419
@@ -4309,7 +4309,6 @@ COPY public.databasechangelog (id, author, filename, dateexecuted, orderexecuted
 84	senior	migrations/000_migrations.yaml	2022-12-28 08:28:00.42093	82	EXECUTED	8:58afc10c3e283a8050ea471aac447a97	renameColumn newColumnName=archived, oldColumnName=is_active, tableName=metric; addDefaultValue columnName=archived, tableName=metric; renameColumn newColumnName=archived, oldColumnName=is_active, tableName=segment; addDefaultValue columnName=arch...	Added 0.30.0	\N	4.10.0	\N	\N	2216079419
 85	camsaul	migrations/000_migrations.yaml	2022-12-28 08:28:00.432007	83	EXECUTED	8:624bb71d09dc2bef7c16c025f57edff0	addColumn tableName=collection; createIndex indexName=idx_collection_personal_owner_id, tableName=collection; addColumn tableName=collection; sql; addNotNullConstraint columnName=_slug, tableName=collection; dropColumn columnName=slug, tableName=c...	Added 0.30.0	\N	4.10.0	\N	\N	2216079419
 86	camsaul	migrations/000_migrations.yaml	2022-12-28 08:28:00.434883	84	EXECUTED	8:50c75bb29f479e0b3fb782d89f7d6717	sql	Added 0.30.0	\N	4.10.0	\N	\N	2216079419
-87	camsaul	migrations/000_migrations.yaml	2022-12-28 08:28:00.439874	85	EXECUTED	8:0eccf19a93cb0ba4017aafd1d308c097	dropTable tableName=raw_column; dropTable tableName=raw_table	Added 0.30.0	\N	4.10.0	\N	\N	2216079419
 88	senior	migrations/000_migrations.yaml	2022-12-28 08:28:00.443562	86	EXECUTED	8:04ff5a0738473938fc31d68c1d9952e1	addColumn tableName=core_user	Added 0.30.0	\N	4.10.0	\N	\N	2216079419
 89	camsaul	migrations/000_migrations.yaml	2022-12-28 08:28:00.529671	87	EXECUTED	8:2ee410aba3f9bcd144ea362494a19a58	createTable tableName=qrtz_job_details; addPrimaryKey constraintName=pk_qrtz_job_details, tableName=qrtz_job_details; createTable tableName=qrtz_triggers; addPrimaryKey constraintName=pk_qrtz_triggers, tableName=qrtz_triggers; addForeignKeyConstra...	Added 0.30.0	\N	4.10.0	\N	\N	2216079419
 90	senior	migrations/000_migrations.yaml	2022-12-28 08:28:00.533868	88	EXECUTED	8:8562a72a1190deadc5fa59a23a6396dc	addColumn tableName=core_user; sql; dropColumn columnName=saml_auth, tableName=core_user	Added 0.30.0	\N	4.10.0	\N	\N	2216079419
@@ -4643,6 +4642,7 @@ v43.00-034	dpsutton	migrations/000_migrations.yaml	2022-12-28 08:28:01.667249	41
 v43.00-035	dpsutton	migrations/000_migrations.yaml	2022-12-28 08:28:01.671875	416	EXECUTED	8:9cce81eb78b0c25d01a23d2f74377eda	addUniqueConstraint constraintName=unique_card_bookmark_user_id_card_id, tableName=card_bookmark	Added 0.43.0 - Card bookmarks table unique constraint	\N	4.10.0	\N	\N	2216079419
 v43.00-036	dpsutton	migrations/000_migrations.yaml	2022-12-28 08:28:01.676476	417	EXECUTED	8:a107c119de1ee902e9526a0413158093	createIndex indexName=idx_card_bookmark_user_id, tableName=card_bookmark	Added 0.43.0 - Card bookmarks table index on user_id	\N	4.10.0	\N	\N	2216079419
 v43.00-037	dpsutton	migrations/000_migrations.yaml	2022-12-28 08:28:01.680632	418	EXECUTED	8:80b451e8506f3d3092347cb3f9a96c0c	createIndex indexName=idx_card_bookmark_card_id, tableName=card_bookmark	Added 0.43.0 - Card bookmarks table index on card_id	\N	4.10.0	\N	\N	2216079419
+31	agilliland	migrations/000_migrations.yaml	2022-12-28 08:27:59.987752	30	EXECUTED	8:30a33a82bab0bcbb2ccb6738d48e1421	addColumn tableName=metabase_field		\N	4.10.0	\N	\N	2216079419
 v43.00-038	dpsutton	migrations/000_migrations.yaml	2022-12-28 08:28:01.68753	419	EXECUTED	8:12e445545dfcf946fd2f04b3f33e8bb7	createTable tableName=collection_bookmark	Added 0.43.0 - Collection bookmarks table	\N	4.10.0	\N	\N	2216079419
 v43.00-039	dpsutton	migrations/000_migrations.yaml	2022-12-28 08:28:01.691815	420	EXECUTED	8:88c30bdf22c1bcae694850d81a65b175	addUniqueConstraint constraintName=unique_collection_bookmark_user_id_collection_id, tableName=collection_bookmark	Added 0.43.0 - Collection bookmarks table unique constraint	\N	4.10.0	\N	\N	2216079419
 v43.00-040	dpsutton	migrations/000_migrations.yaml	2022-12-28 08:28:01.695939	421	EXECUTED	8:455175f303c3f64cb9588aca5c6641e0	createIndex indexName=idx_collection_bookmark_user_id, tableName=collection_bookmark	Added 0.43.0 - Collection bookmarks table index on user_id	\N	4.10.0	\N	\N	2216079419
@@ -4725,6 +4725,7 @@ v45.00-050	camsaul	migrations/000_migrations.yaml	2022-12-28 08:28:02.128501	497
 v45.00-051	qnkhuat	migrations/000_migrations.yaml	2022-12-28 08:28:02.131253	498	MARK_RAN	8:2378c7031da6871dcf1c737bf323d211	modifyDataType columnName=after, tableName=collection_permission_graph_revision	Added 0.45.0 - modify type of collection_permission_graph_revision.after from text to text on mysql,mariadb	\N	4.10.0	\N	\N	2216079419
 v45.00-052	qnkhuat	migrations/000_migrations.yaml	2022-12-28 08:28:02.133896	499	MARK_RAN	8:b7343eb9556c3e636b6f8dd70708c0b3	modifyDataType columnName=before, tableName=collection_permission_graph_revision	Added 0.45.0 - modify type of collection_permission_graph_revision.before from text to text on mysql,mariadb	\N	4.10.0	\N	\N	2216079419
 v45.00-053	qnkhuat	migrations/000_migrations.yaml	2022-12-28 08:28:02.136529	500	MARK_RAN	8:fa552605d5a587c4fa74e0c6bd358097	modifyDataType columnName=remark, tableName=collection_permission_graph_revision	Added 0.45.0 - modify type of collection_permission_graph_revision.remark from text to text on mysql,mariadb	\N	4.10.0	\N	\N	2216079419
+1	agilliland	migrations/000_migrations.yaml	2022-12-28 08:27:59.719398	1	EXECUTED	8:70d9a1021171b879cc55058f4d094a9c	createTable tableName=core_organization; createTable tableName=core_user; createTable tableName=core_userorgperm; addUniqueConstraint constraintName=idx_unique_user_id_organization_id, tableName=core_userorgperm; createIndex indexName=idx_userorgp...		\N	4.10.0	\N	\N	2216079419
 v45.00-054	qnkhuat	migrations/000_migrations.yaml	2022-12-28 08:28:02.139207	501	MARK_RAN	8:60862c4ecf505727e839ac5e94f95528	modifyDataType columnName=after, tableName=permissions_revision	Added 0.45.0 - modify type of permissions_revision.after from text to text on mysql,mariadb	\N	4.10.0	\N	\N	2216079419
 v45.00-055	qnkhuat	migrations/000_migrations.yaml	2022-12-28 08:28:02.141901	502	MARK_RAN	8:717f0c266da5768098a2ead6168f3b18	modifyDataType columnName=before, tableName=permissions_revision	Added 0.45.0 - modify type of permissions_revision.before from text to text on mysql,mariadb	\N	4.10.0	\N	\N	2216079419
 v45.00-056	qnkhuat	migrations/000_migrations.yaml	2022-12-28 08:28:02.144832	503	MARK_RAN	8:a1f364d45a922c90b4fac741a22e66b3	modifyDataType columnName=remark, tableName=permissions_revision	Added 0.45.0 - modify type of permissions_revision.remark from text to text on mysql,mariadb	\N	4.10.0	\N	\N	2216079419
@@ -4786,6 +4787,7 @@ COPY public.label (id, name, slug, icon) FROM stdin;
 --
 
 COPY public.login_history (id, "timestamp", user_id, session_id, device_id, device_description, ip_address) FROM stdin;
+1	2023-01-03 09:09:57.457206+00	1	7316b55f-7f79-431c-aca6-463d668d2f99	6aa2149c-08fc-442e-97cc-aa2349b77448	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36	172.21.0.1
 \.
 
 
@@ -4794,7 +4796,7 @@ COPY public.login_history (id, "timestamp", user_id, session_id, device_id, devi
 --
 
 COPY public.metabase_database (id, created_at, updated_at, name, description, details, engine, is_sample, is_full_sync, points_of_interest, caveats, metadata_sync_schedule, cache_field_values_schedule, timezone, is_on_demand, options, auto_run_queries, refingerprint, cache_ttl, initial_sync_status, creator_id, settings) FROM stdin;
-2	2022-12-28 08:30:32.441204+00	2022-12-28 08:30:32.441204+00	ClickHouse	\N	{"dbname":"processed_customers","host":"clickhouse","port":8123,"user":"airbyte","password":"password","ssl":false,"tunnel-enabled":false,"advanced-options":false}	clickhouse	f	t	\N	\N	0 50 * * * ? *	0 50 0 * * ? *	UTC	f	\N	t	\N	\N	complete	1	\N
+2	2022-12-28 08:30:32.441204+00	2022-12-28 08:30:32.441204+00	ClickHouse	\N	{"dbname":"processed","host":"clickhouse","port":8123,"user":"airbyte","password":"password","ssl":false,"tunnel-enabled":false,"advanced-options":false}	clickhouse	f	t	\N	\N	0 35 * * * ? *	0 0 21 * * ? *	UTC	f	\N	t	\N	\N	complete	1	\N
 \.
 
 
@@ -4817,6 +4819,18 @@ COPY public.metabase_field (id, created_at, updated_at, name, base_type, semanti
 72	2022-12-28 08:30:32.835455+00	2022-12-28 08:30:33.187508+00	customer_id	type/BigInteger	\N	t	\N	t	0	10	\N	Customer ID	normal	\N	2022-12-28 08:30:33.261194+00	\N	\N	{"global":{"distinct-count":100,"nil%":0.0},"type":{"type/Number":{"min":1.0,"q1":25.621320343559642,"q3":75.5,"max":100.0,"sd":29.008358252146028,"avg":50.5}}}	5	Nullable(Int64)	auto-list	\N	0	0	type/BigInteger	\N	\N	f
 73	2022-12-28 08:30:32.837009+00	2022-12-28 08:30:33.190156+00	first_name	type/Text	type/Name	t	\N	t	1	10	\N	First Name	normal	\N	2022-12-28 08:30:33.261194+00	\N	\N	{"global":{"distinct-count":79,"nil%":0.0},"type":{"type/Text":{"percent-json":0.0,"percent-url":0.0,"percent-email":0.0,"percent-state":0.02,"average-length":5.86}}}	5	Nullable(String)	auto-list	\N	1	0	type/Text	\N	\N	f
 82	2022-12-28 08:30:32.865777+00	2022-12-28 08:30:33.200529+00	customer_first_name	type/Text	\N	t	\N	t	1	11	\N	Customer First Name	normal	\N	2022-12-28 08:30:33.261194+00	\N	\N	{"global":{"distinct-count":55,"nil%":0.0},"type":{"type/Text":{"percent-json":0.0,"percent-url":0.0,"percent-email":0.0,"percent-state":0.008849557522123894,"average-length":5.539823008849558}}}	5	Nullable(String)	auto-list	\N	1	0	type/Text	\N	\N	f
+89	2023-01-03 09:21:02.842891+00	2023-01-03 09:21:04.209477+00	order_amount	type/BigInteger	type/Category	t	\N	t	7	12	\N	Order Amount	normal	\N	2023-01-03 09:21:04.313765+00	\N	\N	{"global":{"distinct-count":30,"nil%":0.0},"type":{"type/Number":{"min":0.0,"q1":606.4037815689348,"q3":2278.791845139511,"max":3000.0,"sd":919.836873351873,"avg":1479.646017699115}}}	5	Nullable(Int64)	auto-list	\N	7	0	type/BigInteger	\N	\N	f
+90	2023-01-03 09:21:02.844399+00	2023-01-03 09:21:04.213416+00	payment_method	type/Text	type/Category	t	\N	t	6	12	\N	Payment Method	normal	\N	2023-01-03 09:21:04.313765+00	\N	\N	{"global":{"distinct-count":4,"nil%":0.0},"type":{"type/Text":{"percent-json":0.0,"percent-url":0.0,"percent-email":0.0,"percent-state":0.0,"average-length":10.79646017699115}}}	5	Nullable(String)	auto-list	\N	6	0	type/Text	\N	\N	f
+88	2023-01-03 09:21:02.841447+00	2023-01-03 09:21:04.06656+00	order_date	type/Date	\N	t	\N	t	4	12	\N	Order Date	normal	\N	2023-01-03 09:21:04.313765+00	\N	\N	{"global":{"distinct-count":69,"nil%":0.0},"type":{"type/DateTime":{"earliest":"2018-01-01","latest":"2018-04-09"}}}	5	Nullable(Date)	\N	\N	4	0	type/Date	\N	\N	f
+92	2023-01-03 09:21:02.847362+00	2023-01-03 09:21:04.218227+00	customer_last_name	type/Text	type/Category	t	\N	t	2	12	\N	Customer Last Name	normal	\N	2023-01-03 09:21:04.313765+00	\N	\N	{"global":{"distinct-count":18,"nil%":0.0},"type":{"type/Text":{"percent-json":0.0,"percent-url":0.0,"percent-email":0.0,"percent-state":0.0,"average-length":2.0}}}	5	Nullable(String)	auto-list	\N	2	0	type/Text	\N	\N	f
+94	2023-01-03 09:21:02.943333+00	2023-01-03 09:21:04.233004+00	customer_id	type/BigInteger	\N	t	\N	t	0	13	\N	Customer ID	normal	\N	2023-01-03 09:21:04.313765+00	\N	\N	{"global":{"distinct-count":100,"nil%":0.0},"type":{"type/Number":{"min":1.0,"q1":25.5,"q3":75.5,"max":100.0,"sd":29.008358252146028,"avg":50.5}}}	5	Nullable(Int64)	auto-list	\N	0	0	type/BigInteger	\N	\N	f
+96	2023-01-03 09:21:02.947022+00	2023-01-03 09:21:04.244926+00	last_name	type/Text	type/Name	t	\N	t	2	13	\N	Last Name	normal	\N	2023-01-03 09:21:04.313765+00	\N	\N	{"global":{"distinct-count":19,"nil%":0.0},"type":{"type/Text":{"percent-json":0.0,"percent-url":0.0,"percent-email":0.0,"percent-state":0.0,"average-length":2.0}}}	5	Nullable(String)	auto-list	\N	2	0	type/Text	\N	\N	f
+86	2023-01-03 09:21:02.83719+00	2023-01-03 09:21:04.200503+00	order_status	type/Text	type/Category	t	\N	t	5	12	\N	Order Status	normal	\N	2023-01-03 09:21:04.313765+00	\N	\N	{"global":{"distinct-count":5,"nil%":0.0},"type":{"type/Text":{"percent-json":0.0,"percent-url":0.0,"percent-email":0.0,"percent-state":0.0,"average-length":8.380530973451327}}}	5	Nullable(String)	auto-list	\N	5	0	type/Text	\N	\N	f
+87	2023-01-03 09:21:02.839729+00	2023-01-03 09:21:04.204249+00	order_id	type/BigInteger	\N	t	\N	t	0	12	\N	Order ID	normal	\N	2023-01-03 09:21:04.313765+00	\N	\N	{"global":{"distinct-count":99,"nil%":0.0},"type":{"type/Number":{"min":1.0,"q1":24.904857366030992,"q3":75.12829175487371,"max":99.0,"sd":28.540193317267857,"avg":50.0353982300885}}}	5	Nullable(Int64)	auto-list	\N	0	0	type/BigInteger	\N	\N	f
+91	2023-01-03 09:21:02.845878+00	2023-01-03 09:21:04.222556+00	customer_first_name	type/Text	\N	t	\N	t	1	12	\N	Customer First Name	normal	\N	2023-01-03 09:21:04.313765+00	\N	\N	{"global":{"distinct-count":55,"nil%":0.0},"type":{"type/Text":{"percent-json":0.0,"percent-url":0.0,"percent-email":0.0,"percent-state":0.008849557522123894,"average-length":5.539823008849558}}}	5	Nullable(String)	auto-list	\N	1	0	type/Text	\N	\N	f
+93	2023-01-03 09:21:02.848797+00	2023-01-03 09:21:04.225926+00	customer_phone_number	type/Text	type/Category	t	\N	t	3	12	\N	Customer Phone Number	normal	\N	2023-01-03 09:21:04.313765+00	\N	\N	{"global":{"distinct-count":7,"nil%":0.8938053097345133},"type":{"type/Text":{"percent-json":0.0,"percent-url":0.0,"percent-email":0.0,"percent-state":0.0,"average-length":1.3805309734513274}}}	5	Nullable(String)	auto-list	\N	3	0	type/Text	\N	\N	f
+95	2023-01-03 09:21:02.945336+00	2023-01-03 09:21:04.248673+00	first_name	type/Text	type/Name	t	\N	t	1	13	\N	First Name	normal	\N	2023-01-03 09:21:04.313765+00	\N	\N	{"global":{"distinct-count":79,"nil%":0.0},"type":{"type/Text":{"percent-json":0.0,"percent-url":0.0,"percent-email":0.0,"percent-state":0.02,"average-length":5.86}}}	5	Nullable(String)	auto-list	\N	1	0	type/Text	\N	\N	f
+97	2023-01-03 09:21:02.948822+00	2023-01-03 09:21:04.252269+00	phone_number	type/Text	type/Category	t	\N	t	3	13	\N	Phone Number	normal	\N	2023-01-03 09:21:04.313765+00	\N	\N	{"global":{"distinct-count":14,"nil%":0.87},"type":{"type/Text":{"percent-json":0.0,"percent-url":0.0,"percent-email":0.0,"percent-state":0.0,"average-length":1.69}}}	5	Nullable(String)	auto-list	\N	3	0	type/Text	\N	\N	f
 \.
 
 
@@ -4846,9 +4860,11 @@ COPY public.metabase_fieldvalues (id, created_at, updated_at, "values", human_re
 --
 
 COPY public.metabase_table (id, created_at, updated_at, name, description, entity_type, active, db_id, display_name, visibility_type, schema, points_of_interest, caveats, show_in_getting_started, field_order, initial_sync_status) FROM stdin;
-10	2022-12-28 08:30:32.76357+00	2022-12-28 08:30:33.23088+00	customers	\N	entity/GenericTable	t	2	Customers	\N	processed_customers	\N	\N	f	database	complete
-11	2022-12-28 08:30:32.767192+00	2022-12-28 08:30:33.233271+00	orders	\N	entity/TransactionTable	t	2	Orders	\N	processed_customers	\N	\N	f	database	complete
-9	2022-12-28 08:30:32.757473+00	2022-12-28 08:30:33.236992+00	phone_numbers	\N	entity/GenericTable	t	2	Phone Numbers	\N	processed_customers	\N	\N	f	database	complete
+9	2022-12-28 08:30:32.757473+00	2022-12-28 08:30:33.236992+00	phone_numbers	\N	entity/GenericTable	f	2	Phone Numbers	\N	processed_customers	\N	\N	f	database	complete
+10	2022-12-28 08:30:32.76357+00	2022-12-28 08:30:33.23088+00	customers	\N	entity/GenericTable	f	2	Customers	\N	processed_customers	\N	\N	f	database	complete
+11	2022-12-28 08:30:32.767192+00	2022-12-28 08:30:33.233271+00	orders	\N	entity/TransactionTable	f	2	Orders	\N	processed_customers	\N	\N	f	database	complete
+12	2023-01-03 09:21:02.680624+00	2023-01-03 09:21:04.27451+00	orders	\N	entity/TransactionTable	t	2	Orders	\N	processed	\N	\N	f	database	complete
+13	2023-01-03 09:21:02.689965+00	2023-01-03 09:21:04.279701+00	customers	\N	entity/GenericTable	t	2	Customers	\N	processed	\N	\N	f	database	complete
 \.
 
 
@@ -4903,7 +4919,7 @@ COPY public.permissions (id, object, group_id) FROM stdin;
 4	/collection/namespace/snippets/root/	1
 8	/db/2/	1
 9	/download/db/2/	1
-10	/download/db/2/native/	1
+11	/download/db/2/native/	1
 \.
 
 
@@ -4996,15 +5012,15 @@ COPY public.qrtz_calendars (sched_name, calendar_name, calendar) FROM stdin;
 --
 
 COPY public.qrtz_cron_triggers (sched_name, trigger_name, trigger_group, cron_expression, time_zone_id) FROM stdin;
+MetabaseScheduler	metabase.task.sync-and-analyze.trigger.2	DEFAULT	0 35 * * * ? *	GMT
+MetabaseScheduler	metabase.task.update-field-values.trigger.2	DEFAULT	0 0 21 * * ? *	GMT
 MetabaseScheduler	metabase.task.upgrade-checks.trigger	DEFAULT	0 15 6,18 * * ? *	GMT
-MetabaseScheduler	metabase.task.anonymous-stats.trigger	DEFAULT	0 1 11 * * ? *	GMT
-MetabaseScheduler	metabase.task.refresh-channel-cache.trigger	DEFAULT	0 40 0/4 1/1 * ? *	GMT
+MetabaseScheduler	metabase.task.anonymous-stats.trigger	DEFAULT	0 0 7 * * ? *	GMT
+MetabaseScheduler	metabase.task.refresh-channel-cache.trigger	DEFAULT	0 4 0/4 1/1 * ? *	GMT
 MetabaseScheduler	metabase.task.abandonment-emails.trigger	DEFAULT	0 0 12 * * ? *	GMT
 MetabaseScheduler	metabase.task.send-pulses.trigger	DEFAULT	0 0 * * * ? *	GMT
 MetabaseScheduler	metabase.task.follow-up-emails.trigger	DEFAULT	0 0 12 * * ? *	GMT
 MetabaseScheduler	metabase.task.task-history-cleanup.trigger	DEFAULT	0 0 * * * ? *	GMT
-MetabaseScheduler	metabase.task.sync-and-analyze.trigger.2	DEFAULT	0 50 * * * ? *	GMT
-MetabaseScheduler	metabase.task.update-field-values.trigger.2	DEFAULT	0 50 0 * * ? *	GMT
 \.
 
 
@@ -5021,17 +5037,17 @@ COPY public.qrtz_fired_triggers (sched_name, entry_id, trigger_name, trigger_gro
 --
 
 COPY public.qrtz_job_details (sched_name, job_name, job_group, description, job_class_name, is_durable, is_nonconcurrent, is_update_data, requests_recovery, job_data) FROM stdin;
-MetabaseScheduler	metabase.task.sync-and-analyze.job	DEFAULT	sync-and-analyze for all databases	metabase.task.sync_databases.SyncAndAnalyzeDatabase	t	t	f	f	\\xaced0005737200156f72672e71756172747a2e4a6f62446174614d61709fb083e8bfa9b0cb020000787200266f72672e71756172747a2e7574696c732e537472696e674b65794469727479466c61674d61708208e8c3fbc55d280200015a0013616c6c6f77735472616e7369656e74446174617872001d6f72672e71756172747a2e7574696c732e4469727479466c61674d617013e62ead28760ace0200025a000564697274794c00036d617074000f4c6a6176612f7574696c2f4d61703b787000737200116a6176612e7574696c2e486173684d61700507dac1c31660d103000246000a6c6f6164466163746f724900097468726573686f6c6478703f40000000000010770800000010000000007800
-MetabaseScheduler	metabase.task.update-field-values.job	DEFAULT	update-field-values for all databases	metabase.task.sync_databases.UpdateFieldValues	t	t	f	f	\\xaced0005737200156f72672e71756172747a2e4a6f62446174614d61709fb083e8bfa9b0cb020000787200266f72672e71756172747a2e7574696c732e537472696e674b65794469727479466c61674d61708208e8c3fbc55d280200015a0013616c6c6f77735472616e7369656e74446174617872001d6f72672e71756172747a2e7574696c732e4469727479466c61674d617013e62ead28760ace0200025a000564697274794c00036d617074000f4c6a6176612f7574696c2f4d61703b787000737200116a6176612e7574696c2e486173684d61700507dac1c31660d103000246000a6c6f6164466163746f724900097468726573686f6c6478703f40000000000010770800000010000000007800
-MetabaseScheduler	metabase.task.PersistenceRefresh.job	DEFAULT	Persisted Model refresh task	metabase.task.persist_refresh.PersistenceRefresh	t	t	f	f	\\xaced0005737200156f72672e71756172747a2e4a6f62446174614d61709fb083e8bfa9b0cb020000787200266f72672e71756172747a2e7574696c732e537472696e674b65794469727479466c61674d61708208e8c3fbc55d280200015a0013616c6c6f77735472616e7369656e74446174617872001d6f72672e71756172747a2e7574696c732e4469727479466c61674d617013e62ead28760ace0200025a000564697274794c00036d617074000f4c6a6176612f7574696c2f4d61703b787000737200116a6176612e7574696c2e486173684d61700507dac1c31660d103000246000a6c6f6164466163746f724900097468726573686f6c6478703f40000000000010770800000010000000007800
 MetabaseScheduler	metabase.task.upgrade-checks.job	DEFAULT	\N	metabase.task.upgrade_checks.CheckForNewVersions	f	f	f	f	\\xaced0005737200156f72672e71756172747a2e4a6f62446174614d61709fb083e8bfa9b0cb020000787200266f72672e71756172747a2e7574696c732e537472696e674b65794469727479466c61674d61708208e8c3fbc55d280200015a0013616c6c6f77735472616e7369656e74446174617872001d6f72672e71756172747a2e7574696c732e4469727479466c61674d617013e62ead28760ace0200025a000564697274794c00036d617074000f4c6a6176612f7574696c2f4d61703b787000737200116a6176612e7574696c2e486173684d61700507dac1c31660d103000246000a6c6f6164466163746f724900097468726573686f6c6478703f40000000000010770800000010000000007800
-MetabaseScheduler	metabase.task.PersistencePrune.job	DEFAULT	Persisted Model prune task	metabase.task.persist_refresh.PersistencePrune	t	t	f	f	\\xaced0005737200156f72672e71756172747a2e4a6f62446174614d61709fb083e8bfa9b0cb020000787200266f72672e71756172747a2e7574696c732e537472696e674b65794469727479466c61674d61708208e8c3fbc55d280200015a0013616c6c6f77735472616e7369656e74446174617872001d6f72672e71756172747a2e7574696c732e4469727479466c61674d617013e62ead28760ace0200025a000564697274794c00036d617074000f4c6a6176612f7574696c2f4d61703b787000737200116a6176612e7574696c2e486173684d61700507dac1c31660d103000246000a6c6f6164466163746f724900097468726573686f6c6478703f40000000000010770800000010000000007800
 MetabaseScheduler	metabase.task.anonymous-stats.job	DEFAULT	\N	metabase.task.send_anonymous_stats.SendAnonymousUsageStats	f	f	f	f	\\xaced0005737200156f72672e71756172747a2e4a6f62446174614d61709fb083e8bfa9b0cb020000787200266f72672e71756172747a2e7574696c732e537472696e674b65794469727479466c61674d61708208e8c3fbc55d280200015a0013616c6c6f77735472616e7369656e74446174617872001d6f72672e71756172747a2e7574696c732e4469727479466c61674d617013e62ead28760ace0200025a000564697274794c00036d617074000f4c6a6176612f7574696c2f4d61703b787000737200116a6176612e7574696c2e486173684d61700507dac1c31660d103000246000a6c6f6164466163746f724900097468726573686f6c6478703f40000000000010770800000010000000007800
 MetabaseScheduler	metabase.task.refresh-channel-cache.job	DEFAULT	\N	metabase.task.refresh_slack_channel_user_cache.RefreshCache	f	f	f	f	\\xaced0005737200156f72672e71756172747a2e4a6f62446174614d61709fb083e8bfa9b0cb020000787200266f72672e71756172747a2e7574696c732e537472696e674b65794469727479466c61674d61708208e8c3fbc55d280200015a0013616c6c6f77735472616e7369656e74446174617872001d6f72672e71756172747a2e7574696c732e4469727479466c61674d617013e62ead28760ace0200025a000564697274794c00036d617074000f4c6a6176612f7574696c2f4d61703b787000737200116a6176612e7574696c2e486173684d61700507dac1c31660d103000246000a6c6f6164466163746f724900097468726573686f6c6478703f40000000000010770800000010000000007800
 MetabaseScheduler	metabase.task.abandonment-emails.job	DEFAULT	\N	metabase.task.follow_up_emails.AbandonmentEmail	f	f	f	f	\\xaced0005737200156f72672e71756172747a2e4a6f62446174614d61709fb083e8bfa9b0cb020000787200266f72672e71756172747a2e7574696c732e537472696e674b65794469727479466c61674d61708208e8c3fbc55d280200015a0013616c6c6f77735472616e7369656e74446174617872001d6f72672e71756172747a2e7574696c732e4469727479466c61674d617013e62ead28760ace0200025a000564697274794c00036d617074000f4c6a6176612f7574696c2f4d61703b787000737200116a6176612e7574696c2e486173684d61700507dac1c31660d103000246000a6c6f6164466163746f724900097468726573686f6c6478703f40000000000010770800000010000000007800
 MetabaseScheduler	metabase.task.send-pulses.job	DEFAULT	\N	metabase.task.send_pulses.SendPulses	f	f	f	f	\\xaced0005737200156f72672e71756172747a2e4a6f62446174614d61709fb083e8bfa9b0cb020000787200266f72672e71756172747a2e7574696c732e537472696e674b65794469727479466c61674d61708208e8c3fbc55d280200015a0013616c6c6f77735472616e7369656e74446174617872001d6f72672e71756172747a2e7574696c732e4469727479466c61674d617013e62ead28760ace0200025a000564697274794c00036d617074000f4c6a6176612f7574696c2f4d61703b787000737200116a6176612e7574696c2e486173684d61700507dac1c31660d103000246000a6c6f6164466163746f724900097468726573686f6c6478703f40000000000010770800000010000000007800
 MetabaseScheduler	metabase.task.follow-up-emails.job	DEFAULT	\N	metabase.task.follow_up_emails.FollowUpEmail	f	f	f	f	\\xaced0005737200156f72672e71756172747a2e4a6f62446174614d61709fb083e8bfa9b0cb020000787200266f72672e71756172747a2e7574696c732e537472696e674b65794469727479466c61674d61708208e8c3fbc55d280200015a0013616c6c6f77735472616e7369656e74446174617872001d6f72672e71756172747a2e7574696c732e4469727479466c61674d617013e62ead28760ace0200025a000564697274794c00036d617074000f4c6a6176612f7574696c2f4d61703b787000737200116a6176612e7574696c2e486173684d61700507dac1c31660d103000246000a6c6f6164466163746f724900097468726573686f6c6478703f40000000000010770800000010000000007800
 MetabaseScheduler	metabase.task.task-history-cleanup.job	DEFAULT	\N	metabase.task.task_history_cleanup.TaskHistoryCleanup	f	f	f	f	\\xaced0005737200156f72672e71756172747a2e4a6f62446174614d61709fb083e8bfa9b0cb020000787200266f72672e71756172747a2e7574696c732e537472696e674b65794469727479466c61674d61708208e8c3fbc55d280200015a0013616c6c6f77735472616e7369656e74446174617872001d6f72672e71756172747a2e7574696c732e4469727479466c61674d617013e62ead28760ace0200025a000564697274794c00036d617074000f4c6a6176612f7574696c2f4d61703b787000737200116a6176612e7574696c2e486173684d61700507dac1c31660d103000246000a6c6f6164466163746f724900097468726573686f6c6478703f40000000000010770800000010000000007800
+MetabaseScheduler	metabase.task.update-field-values.job	DEFAULT	update-field-values for all databases	metabase.task.sync_databases.UpdateFieldValues	t	t	f	f	\\xaced0005737200156f72672e71756172747a2e4a6f62446174614d61709fb083e8bfa9b0cb020000787200266f72672e71756172747a2e7574696c732e537472696e674b65794469727479466c61674d61708208e8c3fbc55d280200015a0013616c6c6f77735472616e7369656e74446174617872001d6f72672e71756172747a2e7574696c732e4469727479466c61674d617013e62ead28760ace0200025a000564697274794c00036d617074000f4c6a6176612f7574696c2f4d61703b787000737200116a6176612e7574696c2e486173684d61700507dac1c31660d103000246000a6c6f6164466163746f724900097468726573686f6c6478703f40000000000010770800000010000000007800
+MetabaseScheduler	metabase.task.sync-and-analyze.job	DEFAULT	sync-and-analyze for all databases	metabase.task.sync_databases.SyncAndAnalyzeDatabase	t	t	f	f	\\xaced0005737200156f72672e71756172747a2e4a6f62446174614d61709fb083e8bfa9b0cb020000787200266f72672e71756172747a2e7574696c732e537472696e674b65794469727479466c61674d61708208e8c3fbc55d280200015a0013616c6c6f77735472616e7369656e74446174617872001d6f72672e71756172747a2e7574696c732e4469727479466c61674d617013e62ead28760ace0200025a000564697274794c00036d617074000f4c6a6176612f7574696c2f4d61703b787000737200116a6176612e7574696c2e486173684d61700507dac1c31660d103000246000a6c6f6164466163746f724900097468726573686f6c6478703f40000000000010770800000010000000007800
+MetabaseScheduler	metabase.task.PersistenceRefresh.job	DEFAULT	Persisted Model refresh task	metabase.task.persist_refresh.PersistenceRefresh	t	t	f	f	\\xaced0005737200156f72672e71756172747a2e4a6f62446174614d61709fb083e8bfa9b0cb020000787200266f72672e71756172747a2e7574696c732e537472696e674b65794469727479466c61674d61708208e8c3fbc55d280200015a0013616c6c6f77735472616e7369656e74446174617872001d6f72672e71756172747a2e7574696c732e4469727479466c61674d617013e62ead28760ace0200025a000564697274794c00036d617074000f4c6a6176612f7574696c2f4d61703b787000737200116a6176612e7574696c2e486173684d61700507dac1c31660d103000246000a6c6f6164466163746f724900097468726573686f6c6478703f40000000000010770800000010000000007800
+MetabaseScheduler	metabase.task.PersistencePrune.job	DEFAULT	Persisted Model prune task	metabase.task.persist_refresh.PersistencePrune	t	t	f	f	\\xaced0005737200156f72672e71756172747a2e4a6f62446174614d61709fb083e8bfa9b0cb020000787200266f72672e71756172747a2e7574696c732e537472696e674b65794469727479466c61674d61708208e8c3fbc55d280200015a0013616c6c6f77735472616e7369656e74446174617872001d6f72672e71756172747a2e7574696c732e4469727479466c61674d617013e62ead28760ace0200025a000564697274794c00036d617074000f4c6a6176612f7574696c2f4d61703b787000737200116a6176612e7574696c2e486173684d61700507dac1c31660d103000246000a6c6f6164466163746f724900097468726573686f6c6478703f40000000000010770800000010000000007800
 \.
 
 
@@ -5058,7 +5074,7 @@ COPY public.qrtz_paused_trigger_grps (sched_name, trigger_group) FROM stdin;
 --
 
 COPY public.qrtz_scheduler_state (sched_name, instance_name, last_checkin_time, checkin_interval) FROM stdin;
-MetabaseScheduler	25724406fd301672216082279	1672216442978	7500
+MetabaseScheduler	f3ae728f7d8d1672738040627	1672738131003	7500
 \.
 
 
@@ -5083,15 +5099,15 @@ COPY public.qrtz_simprop_triggers (sched_name, trigger_name, trigger_group, str_
 --
 
 COPY public.qrtz_triggers (sched_name, trigger_name, trigger_group, job_name, job_group, description, next_fire_time, prev_fire_time, priority, trigger_state, trigger_type, start_time, end_time, calendar_name, misfire_instr, job_data) FROM stdin;
-MetabaseScheduler	metabase.task.upgrade-checks.trigger	DEFAULT	metabase.task.upgrade-checks.job	DEFAULT	\N	1672251300000	-1	5	WAITING	CRON	1672216082000	0	\N	0	\\x
-MetabaseScheduler	metabase.task.anonymous-stats.trigger	DEFAULT	metabase.task.anonymous-stats.job	DEFAULT	\N	1672225260000	-1	5	WAITING	CRON	1672216082000	0	\N	0	\\x
-MetabaseScheduler	metabase.task.refresh-channel-cache.trigger	DEFAULT	metabase.task.refresh-channel-cache.job	DEFAULT	\N	1672216800000	-1	5	WAITING	CRON	1672216082000	0	\N	2	\\x
-MetabaseScheduler	metabase.task.abandonment-emails.trigger	DEFAULT	metabase.task.abandonment-emails.job	DEFAULT	\N	1672228800000	-1	5	WAITING	CRON	1672216082000	0	\N	0	\\x
-MetabaseScheduler	metabase.task.send-pulses.trigger	DEFAULT	metabase.task.send-pulses.job	DEFAULT	\N	1672218000000	-1	5	WAITING	CRON	1672216082000	0	\N	1	\\x
-MetabaseScheduler	metabase.task.follow-up-emails.trigger	DEFAULT	metabase.task.follow-up-emails.job	DEFAULT	\N	1672228800000	-1	5	WAITING	CRON	1672216082000	0	\N	0	\\x
-MetabaseScheduler	metabase.task.task-history-cleanup.trigger	DEFAULT	metabase.task.task-history-cleanup.job	DEFAULT	\N	1672218000000	-1	5	WAITING	CRON	1672216082000	0	\N	0	\\x
-MetabaseScheduler	metabase.task.sync-and-analyze.trigger.2	DEFAULT	metabase.task.sync-and-analyze.job	DEFAULT	sync-and-analyze Database 2	1672217400000	-1	5	WAITING	CRON	1672216232000	0	\N	2	\\xaced0005737200156f72672e71756172747a2e4a6f62446174614d61709fb083e8bfa9b0cb020000787200266f72672e71756172747a2e7574696c732e537472696e674b65794469727479466c61674d61708208e8c3fbc55d280200015a0013616c6c6f77735472616e7369656e74446174617872001d6f72672e71756172747a2e7574696c732e4469727479466c61674d617013e62ead28760ace0200025a000564697274794c00036d617074000f4c6a6176612f7574696c2f4d61703b787000737200116a6176612e7574696c2e486173684d61700507dac1c31660d103000246000a6c6f6164466163746f724900097468726573686f6c6478703f4000000000000c7708000000100000000174000564622d6964737200116a6176612e6c616e672e496e746567657212e2a0a4f781873802000149000576616c7565787200106a6176612e6c616e672e4e756d62657286ac951d0b94e08b0200007870000000027800
-MetabaseScheduler	metabase.task.update-field-values.trigger.2	DEFAULT	metabase.task.update-field-values.job	DEFAULT	update-field-values Database 2	1672275000000	-1	5	WAITING	CRON	1672216232000	0	\N	2	\\xaced0005737200156f72672e71756172747a2e4a6f62446174614d61709fb083e8bfa9b0cb020000787200266f72672e71756172747a2e7574696c732e537472696e674b65794469727479466c61674d61708208e8c3fbc55d280200015a0013616c6c6f77735472616e7369656e74446174617872001d6f72672e71756172747a2e7574696c732e4469727479466c61674d617013e62ead28760ace0200025a000564697274794c00036d617074000f4c6a6176612f7574696c2f4d61703b787000737200116a6176612e7574696c2e486173684d61700507dac1c31660d103000246000a6c6f6164466163746f724900097468726573686f6c6478703f4000000000000c7708000000100000000174000564622d6964737200116a6176612e6c616e672e496e746567657212e2a0a4f781873802000149000576616c7565787200106a6176612e6c616e672e4e756d62657286ac951d0b94e08b0200007870000000027800
+MetabaseScheduler	metabase.task.sync-and-analyze.trigger.2	DEFAULT	metabase.task.sync-and-analyze.job	DEFAULT	sync-and-analyze Database 2	1672738500000	-1	5	WAITING	CRON	1672736989000	0	\N	2	\\xaced0005737200156f72672e71756172747a2e4a6f62446174614d61709fb083e8bfa9b0cb020000787200266f72672e71756172747a2e7574696c732e537472696e674b65794469727479466c61674d61708208e8c3fbc55d280200015a0013616c6c6f77735472616e7369656e74446174617872001d6f72672e71756172747a2e7574696c732e4469727479466c61674d617013e62ead28760ace0200025a000564697274794c00036d617074000f4c6a6176612f7574696c2f4d61703b787000737200116a6176612e7574696c2e486173684d61700507dac1c31660d103000246000a6c6f6164466163746f724900097468726573686f6c6478703f4000000000000c7708000000100000000174000564622d6964737200116a6176612e6c616e672e496e746567657212e2a0a4f781873802000149000576616c7565787200106a6176612e6c616e672e4e756d62657286ac951d0b94e08b0200007870000000027800
+MetabaseScheduler	metabase.task.update-field-values.trigger.2	DEFAULT	metabase.task.update-field-values.job	DEFAULT	update-field-values Database 2	1672779600000	-1	5	WAITING	CRON	1672736989000	0	\N	2	\\xaced0005737200156f72672e71756172747a2e4a6f62446174614d61709fb083e8bfa9b0cb020000787200266f72672e71756172747a2e7574696c732e537472696e674b65794469727479466c61674d61708208e8c3fbc55d280200015a0013616c6c6f77735472616e7369656e74446174617872001d6f72672e71756172747a2e7574696c732e4469727479466c61674d617013e62ead28760ace0200025a000564697274794c00036d617074000f4c6a6176612f7574696c2f4d61703b787000737200116a6176612e7574696c2e486173684d61700507dac1c31660d103000246000a6c6f6164466163746f724900097468726573686f6c6478703f4000000000000c7708000000100000000174000564622d6964737200116a6176612e6c616e672e496e746567657212e2a0a4f781873802000149000576616c7565787200106a6176612e6c616e672e4e756d62657286ac951d0b94e08b0200007870000000027800
+MetabaseScheduler	metabase.task.upgrade-checks.trigger	DEFAULT	metabase.task.upgrade-checks.job	DEFAULT	\N	1672769700000	-1	5	WAITING	CRON	1672738040000	0	\N	0	\\x
+MetabaseScheduler	metabase.task.anonymous-stats.trigger	DEFAULT	metabase.task.anonymous-stats.job	DEFAULT	\N	1672815600000	-1	5	WAITING	CRON	1672738040000	0	\N	0	\\x
+MetabaseScheduler	metabase.task.refresh-channel-cache.trigger	DEFAULT	metabase.task.refresh-channel-cache.job	DEFAULT	\N	1672747440000	-1	5	WAITING	CRON	1672738040000	0	\N	2	\\x
+MetabaseScheduler	metabase.task.abandonment-emails.trigger	DEFAULT	metabase.task.abandonment-emails.job	DEFAULT	\N	1672747200000	-1	5	WAITING	CRON	1672738041000	0	\N	0	\\x
+MetabaseScheduler	metabase.task.send-pulses.trigger	DEFAULT	metabase.task.send-pulses.job	DEFAULT	\N	1672740000000	-1	5	WAITING	CRON	1672738041000	0	\N	1	\\x
+MetabaseScheduler	metabase.task.follow-up-emails.trigger	DEFAULT	metabase.task.follow-up-emails.job	DEFAULT	\N	1672747200000	-1	5	WAITING	CRON	1672738041000	0	\N	0	\\x
+MetabaseScheduler	metabase.task.task-history-cleanup.trigger	DEFAULT	metabase.task.task-history-cleanup.job	DEFAULT	\N	1672740000000	-1	5	WAITING	CRON	1672738041000	0	\N	0	\\x
 \.
 
 
@@ -5103,6 +5119,7 @@ COPY public.query (query_hash, average_execution_time, query) FROM stdin;
 \\x78f557b858d16843dbb0b6487ef16799d548e03cac69a13140ad3df54e8d9371	127	{"type":"query","database":2,"query":{"source-table":11,"aggregation":[["count"]]},"middleware":{"js-int-to-string?":true,"add-default-userland-constraints?":true}}
 \\x2d9f34c32bc11c0150389d08b8887eb2f054a38a7f6d751cee8519b56d847718	73	{"database":2,"query":{"source-table":10},"type":"query","middleware":{"js-int-to-string?":true,"add-default-userland-constraints?":true}}
 \\xd1500bbe8d68ad30ccf868df58a2fa9b19ed28fde378f271ef76e5a455e072f0	127	{"type":"query","database":2,"query":{"source-table":11,"filter":["and",["time-interval",["field",79,{"temporal-unit":"day"}],-30,"day"]],"aggregation":[["count"]]},"middleware":{"js-int-to-string?":true,"add-default-userland-constraints?":true}}
+\\xff84035baefa9dddef71321e0bb35c941079edf12809f9a589c7652241ebedb5	65	{"type":"query","database":2,"query":{"source-table":9,"aggregation":[["count"]]},"middleware":{"js-int-to-string?":true,"add-default-userland-constraints?":true}}
 \.
 
 
@@ -5130,6 +5147,7 @@ COPY public.query_execution (id, hash, started_at, running_time, result_rows, na
 1	\\xd1500bbe8d68ad30ccf868df58a2fa9b19ed28fde378f271ef76e5a455e072f0	2022-12-28 08:31:39.375223+00	127	1	f	ad-hoc	\N	1	\N	\N	\N	2	f
 2	\\x78f557b858d16843dbb0b6487ef16799d548e03cac69a13140ad3df54e8d9371	2022-12-28 08:31:39.375249+00	127	1	f	ad-hoc	\N	1	\N	\N	\N	2	f
 3	\\x2d9f34c32bc11c0150389d08b8887eb2f054a38a7f6d751cee8519b56d847718	2022-12-28 08:31:47.562852+00	73	100	f	ad-hoc	\N	1	\N	\N	\N	2	f
+4	\\xff84035baefa9dddef71321e0bb35c941079edf12809f9a589c7652241ebedb5	2023-01-03 09:21:18.095473+00	65	0	f	ad-hoc	Code: 81. DB::Exception: Database processed_customers doesn't exist. (UNKNOWN_DATABASE) (version 22.12.1.1752 (official build))\n, server ClickHouseNode [uri=http://clickhouse:8123/processed, options={use_server_time_zone_for_dates=true}]@909092149	1	\N	\N	\N	2	\N
 \.
 
 
@@ -5197,7 +5215,6 @@ COPY public.setting (key, value) FROM stdin;
 setup-token	628bc1d1-5953-48d3-b16c-6e926d64cca3
 analytics-uuid	b3d11802-8b40-4c4c-9b48-30b9a5d75047
 instance-creation	2022-12-28T08:28:04.240129Z
-startup-time-millis	14418
 redirect-all-requests-to-https	false
 site-url	http://localhost:3000
 site-name	MDS
@@ -5205,7 +5222,8 @@ admin-email	example@example.com
 site-locale	en
 anon-tracking-enabled	true
 site-uuid	ed5ca826-dfe7-4fdd-b10d-89b2b8962e01
-settings-last-updated	2022-12-28 08:30:34.959008+00
+startup-time-millis	3204
+settings-last-updated	2023-01-03 09:27:21.113909+00
 \.
 
 
@@ -5240,6 +5258,19 @@ COPY public.task_history (id, task, db_id, started_at, ended_at, duration, task_
 24	field values scanning	2	2022-12-28 08:30:33.264681+00	2022-12-28 08:30:33.656482+00	391	\N
 25	delete-expired-advanced-field-values	2	2022-12-28 08:30:33.264701+00	2022-12-28 08:30:33.292811+00	28	{"deleted":0}
 26	update-field-values	2	2022-12-28 08:30:33.292857+00	2022-12-28 08:30:33.656419+00	363	{"errors":0,"created":13,"updated":0,"deleted":0}
+27	sync	2	2023-01-03 09:21:02.581432+00	2023-01-03 09:21:02.989587+00	408	\N
+28	field values scanning	2	2023-01-03 09:21:03.12507+00	2023-01-03 09:21:03.200647+00	75	\N
+29	delete-expired-advanced-field-values	2	2023-01-03 09:21:03.125135+00	2023-01-03 09:21:03.175908+00	50	{"deleted":0}
+30	sync-timezone	2	2023-01-03 09:21:02.582743+00	2023-01-03 09:21:02.643748+00	61	{"timezone-id":"UTC"}
+31	sync-tables	2	2023-01-03 09:21:02.644122+00	2023-01-03 09:21:02.769261+00	125	{"updated-tables":5,"total-tables":3}
+32	update-field-values	2	2023-01-03 09:21:03.176043+00	2023-01-03 09:21:03.200594+00	24	{"errors":0,"created":0,"updated":0,"deleted":0}
+33	sync-fields	2	2023-01-03 09:21:02.769362+00	2023-01-03 09:21:02.955605+00	186	{"total-fields":12,"updated-fields":12}
+34	sync-fks	2	2023-01-03 09:21:02.955656+00	2023-01-03 09:21:02.976674+00	21	{"total-fks":0,"updated-fks":0,"total-failed":0}
+35	sync-metabase-metadata	2	2023-01-03 09:21:02.976785+00	2023-01-03 09:21:02.98955+00	12	\N
+36	analyze	2	2023-01-03 09:21:03.573901+00	2023-01-03 09:21:04.281894+00	707	\N
+37	fingerprint-fields	2	2023-01-03 09:21:03.573934+00	2023-01-03 09:21:04.177174+00	603	{"no-data-fingerprints":0,"failed-fingerprints":0,"updated-fingerprints":12,"fingerprints-attempted":12}
+38	classify-fields	2	2023-01-03 09:21:04.177241+00	2023-01-03 09:21:04.254414+00	77	{"fields-classified":12,"fields-failed":0}
+39	classify-tables	2	2023-01-03 09:21:04.254495+00	2023-01-03 09:21:04.281836+00	27	{"total-tables":2,"tables-classified":2}
 \.
 
 
@@ -5267,6 +5298,7 @@ COPY public.view_log (id, user_id, model, model_id, "timestamp", metadata) FROM 
 1	1	table	11	2022-12-28 08:31:39.351078+00	{"cached":null,"ignore_cache":null}
 2	1	table	11	2022-12-28 08:31:39.363935+00	{"cached":null,"ignore_cache":null}
 3	1	table	10	2022-12-28 08:31:47.561906+00	{"cached":null,"ignore_cache":null}
+4	1	table	9	2023-01-03 09:21:18.080645+00	{"cached":null,"ignore_cache":null}
 \.
 
 
@@ -5421,7 +5453,7 @@ SELECT pg_catalog.setval('public.label_id_seq', 1, false);
 -- Name: login_history_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.login_history_id_seq', 1, false);
+SELECT pg_catalog.setval('public.login_history_id_seq', 1, true);
 
 
 --
@@ -5435,7 +5467,7 @@ SELECT pg_catalog.setval('public.metabase_database_id_seq', 2, true);
 -- Name: metabase_field_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.metabase_field_id_seq', 85, true);
+SELECT pg_catalog.setval('public.metabase_field_id_seq', 97, true);
 
 
 --
@@ -5449,7 +5481,7 @@ SELECT pg_catalog.setval('public.metabase_fieldvalues_id_seq', 37, true);
 -- Name: metabase_table_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.metabase_table_id_seq', 11, true);
+SELECT pg_catalog.setval('public.metabase_table_id_seq', 13, true);
 
 
 --
@@ -5505,7 +5537,7 @@ SELECT pg_catalog.setval('public.permissions_group_membership_id_seq', 2, true);
 -- Name: permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.permissions_id_seq', 10, true);
+SELECT pg_catalog.setval('public.permissions_id_seq', 11, true);
 
 
 --
@@ -5554,7 +5586,7 @@ SELECT pg_catalog.setval('public.pulse_id_seq', 1, false);
 -- Name: query_execution_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.query_execution_id_seq', 3, true);
+SELECT pg_catalog.setval('public.query_execution_id_seq', 4, true);
 
 
 --
@@ -5610,7 +5642,7 @@ SELECT pg_catalog.setval('public.segment_id_seq', 1, false);
 -- Name: task_history_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.task_history_id_seq', 26, true);
+SELECT pg_catalog.setval('public.task_history_id_seq', 39, true);
 
 
 --
@@ -5631,7 +5663,7 @@ SELECT pg_catalog.setval('public.timeline_id_seq', 1, false);
 -- Name: view_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.view_log_id_seq', 3, true);
+SELECT pg_catalog.setval('public.view_log_id_seq', 4, true);
 
 
 --

@@ -11,7 +11,7 @@ configuration:
   ssl: false # OPTIONAL | boolean | Encrypt data using SSL.
   host: localhost # REQUIRED | string | The host endpoint of the Clickhouse cluster.
   port: 8123 # REQUIRED | integer | The port of the database. | Example: 8123
-  database: processed_customers # REQUIRED | string | The name of the database. | Example: default
+  database: processed_seeds # REQUIRED | string | The name of the database. | Example: default
   password: ${CLICKHOUSE_PASSWORD} # SECRET (please store in environment variables) | OPTIONAL | string | The password associated with this username.
   username: airbyte # REQUIRED | string | The username which is used to access the database.
   tunnel_method:

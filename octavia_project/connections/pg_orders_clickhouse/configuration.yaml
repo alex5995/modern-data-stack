@@ -8,8 +8,8 @@ destination_configuration_path: destinations/clickhouse/configuration.yaml
 configuration:
   status: active # REQUIRED | string | Allowed values: active, inactive, deprecated
   skip_reset: false # OPTIONAL | boolean | Flag to check if the connection should be reset after a connection update
-  namespace_definition: destination # OPTIONAL | string | Allowed values: source, destination, customformat
-  namespace_format: "" # OPTIONAL | string | Used when namespaceDefinition is 'customformat'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE_NAMESPACE}" then behaves like namespaceDefinition = 'source'.
+  namespace_definition: customformat # OPTIONAL | string | Allowed values: source, destination, customformat
+  namespace_format: orders # OPTIONAL | string | Used when namespaceDefinition is 'customformat'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE_NAMESPACE}" then behaves like namespaceDefinition = 'source'.
   prefix: "" # REQUIRED | Prefix that will be prepended to the name of each stream when it is written to the destination
   resource_requirements: # OPTIONAL | object | Resource requirements to run workers (blank for unbounded allocations)
     cpu_limit: "" # OPTIONAL

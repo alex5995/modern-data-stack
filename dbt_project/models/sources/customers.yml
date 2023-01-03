@@ -4,5 +4,8 @@ sources:
     schema: customers
     tables:
       - name: customers
+  - name: orders
+    schema: orders
+    tables:
       - name: orders
       - name: payments

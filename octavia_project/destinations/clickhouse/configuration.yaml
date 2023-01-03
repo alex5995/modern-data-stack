@@ -11,7 +11,7 @@ configuration:
   ssl: false # OPTIONAL | boolean | Encrypt data using SSL.
   host: localhost # REQUIRED | string | Hostname of the database.
   port: 8123 # REQUIRED | integer | HTTP port of the database. | Example: 8123
-  database: customers # REQUIRED | string | Name of the database.
+  database: default # REQUIRED | string | Name of the database.
   password: ${CLICKHOUSE_PASSWORD} # SECRET (please store in environment variables) | OPTIONAL | string | Password associated with the username.
   username: airbyte # REQUIRED | string | Username to use to access the database.
   tunnel_method:

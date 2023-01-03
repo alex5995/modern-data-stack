@@ -60,7 +60,7 @@ configuration:
                 type: number
             type: object
           name: phone_numbers
-          namespace: processed_customers
+          namespace: processed_seeds
           source_defined_primary_key: []
           supported_sync_modes:
             - full_refresh

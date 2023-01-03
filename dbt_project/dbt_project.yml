@@ -1,7 +1,7 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: "customers"
+name: "mds"
 version: "1.0.0"
 config-version: 2
 
@@ -30,11 +30,12 @@ clean-targets: # directories to be removed by `dbt clean`
 # as tables. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 models:
-  customers:
-    +materialized: view
+  mds:
+    +materialized: table
 
 seeds:
-  customers:
+  mds:
+    +schema: seeds
     phone_numbers:
       +column_types:
         id: INTEGER
