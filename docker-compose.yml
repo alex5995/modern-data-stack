@@ -51,6 +51,7 @@ services:
     network_mode: host
     volumes:
       - ./dbt_project:/dbt
+      - ./dbt_project/dbt_metabase_config.yml:/root/.dbt-metabase/config.yml
       - ./octavia_project:/octavia
 
   postgres_metabase:

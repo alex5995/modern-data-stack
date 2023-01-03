@@ -1,0 +1,6 @@
+config:
+  dbt_path: .
+  dbt_database: processed
+  dbt_schema: processed
+  metabase_database: ClickHouse
+  metabase_use_http: true

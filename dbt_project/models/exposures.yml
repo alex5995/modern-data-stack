@@ -1,0 +1,25 @@
+version: 2
+exposures:
+  - name: Orders_summary
+    description: '### Visualization: Table
+
+
+      No description provided in Metabase
+
+
+      #### Metadata
+
+
+      Metabase Id: __1__
+
+
+      Created On: __2023-01-04T14:08:30.277615Z__'
+    type: analysis
+    url: http://localhost:3000/card/1
+    maturity: medium
+    owner:
+      name: Metabase User
+      email: metabase@user.com
+    depends_on:
+      - ref('orders')
+      - ref('customers')

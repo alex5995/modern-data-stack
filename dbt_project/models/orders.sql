@@ -1,14 +1,17 @@
+WITH orders_amounts AS (
+    SELECT
+        order_id,
+        SUM(amount) AS amount
+    FROM {{ source('orders', 'payments') }}
+    GROUP BY 1
+)
+
 SELECT
     o.id AS order_id,
-    c.first_name AS customer_first_name,
-    c.last_name AS customer_last_name,
-    c.phone_number AS customer_phone_number,
+    o.user_id AS customer_id, 
     o.order_date AS order_date,
     o.status AS order_status,
-    p.payment_method AS payment_method,
-    p.amount AS order_amount
+    orders_amounts.amount AS order_amount
 FROM {{ source('orders', 'orders') }} AS o
-LEFT JOIN {{ source('orders', 'payments') }} AS p
-    ON o.id = p.order_id
-LEFT JOIN {{ ref('customers') }} AS c
-    ON o.user_id = c.customer_id
+LEFT JOIN orders_amounts
+    ON o.id = orders_amounts.order_id

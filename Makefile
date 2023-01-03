@@ -12,12 +12,15 @@ stop:
 	minikube stop
 
 octavia-apply:
-	docker compose exec octavia bash -c 'octavia apply --force'
+	docker compose exec octavia octavia apply --force
 
 argo-apply:
 	minikube image build -t mds-app .
 	minikube kubectl -- apply -n argo -f argo_project/credentials.yml
 	minikube kubectl -- apply -n argo -f argo_project/cron.yml
+
+metabase-exposures:
+	docker compose exec app dbt-metabase exposures --output_path models --output_name exposures
 
 reset: stop
 	docker volume rm airbyte_data
