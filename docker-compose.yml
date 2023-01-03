@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   clickhouse:
-    image: clickhouse/clickhouse-server
+    image: clickhouse/clickhouse-server:22.9.7
     environment:
       CLICKHOUSE_USER: ${CLICKHOUSE_USER}
       CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD}
@@ -64,7 +64,7 @@ services:
       - pg_metabase:/var/lib/postgresql/data
 
   metabase:
-    image: metabase/metabase
+    image: metabase/metabase:v0.45.1
     environment:
       MB_DB_TYPE: postgres
       MB_DB_DBNAME: postgres

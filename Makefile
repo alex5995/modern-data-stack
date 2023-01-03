@@ -1,7 +1,7 @@
 start:
 	docker compose up -d
 
-	git clone --depth 1 https://github.com/airbytehq/airbyte.git || true
+	git clone --branch v0.40.26 --depth 1 https://github.com/airbytehq/airbyte.git || true
 	cd airbyte && docker compose up -d
 
 	argo_project/start.sh
