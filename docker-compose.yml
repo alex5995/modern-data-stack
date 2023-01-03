@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  clickhouse:
+    image: clickhouse/clickhouse-server
+    environment:
+      CLICKHOUSE_USER: airbyte
+      CLICKHOUSE_PASSWORD: password
+    ports:
+      - '8123:8123'
+    volumes:
+      - ./clickhouse-init.sql:/docker-entrypoint-initdb.d/clickhouse-init.sql
+
+  postgres_customers:
+    image: postgres:15
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./pg_dumps:/pg_dumps
+
+  postgres_orders:
+    image: postgres:15
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5433:5432'
+    volumes:
+      - ./pg_dumps:/pg_dumps
+
+  octavia:
+    image: airbyte/octavia-cli:0.40.26
+    entrypoint: "tail -f /dev/null"
+    env_file:
+      - ./octavia_project/.env.dev
+    network_mode: host
+    volumes:
+      - ./octavia_project:/home/octavia-project
+      - ./wait-for-it.sh:/wait-for-it.sh
