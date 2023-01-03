@@ -4,8 +4,8 @@ services:
   clickhouse:
     image: clickhouse/clickhouse-server
     environment:
-      CLICKHOUSE_USER: airbyte
-      CLICKHOUSE_PASSWORD: password
+      CLICKHOUSE_USER: ${CLICKHOUSE_USER}
+      CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD}
     ports:
       - '8123:8123'
     volumes:
@@ -14,7 +14,7 @@ services:
   postgres_customers:
     image: postgres:15
     environment:
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: ${PG_CUSTOMERS_PASSWORD}
     ports:
       - '5432:5432'
     volumes:
@@ -23,7 +23,7 @@ services:
   postgres_orders:
     image: postgres:15
     environment:
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: ${PG_ORDERS_PASSWORD}
     ports:
       - '5433:5432'
     volumes:
@@ -33,7 +33,7 @@ services:
     image: airbyte/octavia-cli:0.40.26
     entrypoint: "tail -f /dev/null"
     env_file:
-      - ./octavia_project/.env.dev
+      - .env
     network_mode: host
     volumes:
       - ./octavia_project:/home/octavia-project
@@ -43,7 +43,7 @@ services:
     build:
       context: ./dbt_project
     env_file:
-      - ./dbt_project/.env.dev
+      - .env
     entrypoint: "tail -f /dev/null"
     volumes:
       - ./dbt_project:/dbt
