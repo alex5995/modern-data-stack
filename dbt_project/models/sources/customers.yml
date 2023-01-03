@@ -1,0 +1,8 @@
+version: 2
+sources:
+  - name: customers
+    schema: customers
+    tables:
+      - name: customers
+      - name: orders
+      - name: payments

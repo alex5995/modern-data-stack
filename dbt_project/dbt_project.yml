@@ -32,3 +32,10 @@ clean-targets: # directories to be removed by `dbt clean`
 models:
   customers:
     +materialized: view
+
+seeds:
+  customers:
+    phone_numbers:
+      +column_types:
+        id: INTEGER
+        phone_number: VARCHAR
